@@ -61,7 +61,7 @@ class Model
 
         $contents = 'APP_ENV=local  ' . "\n" . 'APP_DEBUG=false  ' . "\n" . 'APP_KEY='.md5(uniqid()). "\n" . 'DB_HOST=' . $this->hostName . ' ' . "\n" . 'DB_DATABASE=' . $this->dbName . ' ' . "\n" . 'DB_USERNAME=' . $this->userName . '' . "\n" . 'DB_PASSWORD=' . $this->passCode . ' ' . "\n" . 'CACHE_DRIVER=file  ' . "\n" . 'SESSION_DRIVER=file ' . "\n" . 'QUEUE_DRIVER=sync ' . "\n" . 'MAIL_DRIVER=mail ' . "\n" . 'MAIL_HOST=smtp.gmail.com ' . "\n" . 'MAIL_PORT=25 ' . "\n" . 'MAIL_USERNAME=avatarbugs@gmail.com ' . "\n" . 'MAIL_PASSWORD=avatarbugs123 ' . "\n" . 'MAIL_ENCRYPTION=tls';
 
-        $bytes_written = file_put_contents(__DIR__.'/extract_path/.env', $contents);
+        $bytes_written = file_put_contents(__DIR__.'/extract_path/bootydev-master/.env', $contents);
         if ($this->connectionString) {
 //            if ($this->saveJson()) {
                 return 1;
