@@ -94,15 +94,30 @@ function database($request)
             }
         }
 }
-function run(){
-    $src = __DIR__."/extract_path/*";
-    $dest = __DIR__."/../../test";
-    mkdir($dest.'/public',0755,true);
-    mkdir($dest.'/storage',0766,true);
-    mkdir($dest.'/bootstrap/cache',0766,true);
-    shell_exec("cp -r $src $dest");
-
-
+function run()
+{
+    $src = __DIR__ . "/extract_path/bootydev-master";
+    $dest = __DIR__ . "/../../test";
+//    mkdir($dest . '/public', 0755, true);
+//    mkdir($dest . '/storage', 0766, true);
+//    mkdir($dest . '/bootstrap/cache', 0766, true);
+//    shell_exec("cp -r $src $dest");
+    recurse_copy($src,$dest);
 
     echo "<H3>Copy Paste completed!</H3>";
+}
+function recurse_copy($src,$dst) {
+    $dir = opendir($src);
+    @mkdir($dst);
+    while(false !== ( $file = readdir($dir)) ) {
+        if (( $file != '.' ) && ( $file != '..' )) {
+            if ( is_dir($src . '/' . $file) ) {
+                recurse_copy($src . '/' . $file,$dst . '/' . $file);
+            }
+            else {
+                copy($src . '/' . $file,$dst . '/' . $file);
+            }
+        }
+    }
+    closedir($dir);
 }
