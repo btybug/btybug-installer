@@ -163,7 +163,6 @@ function migrateDb($request)
             $templine = '';
         }
     }
-    echo "Tables imported successfully";
 }
 
 function recurse_copy($src, $dst)
