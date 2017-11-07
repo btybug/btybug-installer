@@ -52,9 +52,8 @@ function requirements($args)
         $continue = $continue * $requirements[$k];
 
     }
-    if (phpversion() >= 7) {
-        $requirements['PHP>=7'] = 1;
-    }
+        $requirements['PHP>=7'] =version_compare(PHP_VERSION,'7.1.0','>=');
+        $requirements['Allow url fopen'] =ini_get('allow_url_fopen');
     $data = ['success' => true, 'data' => $requirements, 'continue' => $continue];
     save_step('requirements', $data);
     echo json_encode($data);
