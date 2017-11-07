@@ -64,6 +64,11 @@ function download()
 {
     $fh = __DIR__ . "/master.zip";
     $url = 'https://github.com/btybug/container/archive/master.zip';
+
+    if (! copy($fh, $url)) {
+        echo "failed to copy";
+    }
+
 //    $url='http://dev.bootydev.co.uk/public/bootydev.zip';
     $result = file_put_contents($fh, file_get_contents($url));
     $data = ['success' => $result];
