@@ -64,7 +64,7 @@ function requirements($args)
 function download()
 {
     $fh = __DIR__ . "/master.zip";
-    $url = 'https://github.com//btybug/container/archive/master.zip';
+    $url = 'https://github.com/btybug/container/archive/master.zip';
 //    $url='http://dev.bootydev.co.uk/public/bootydev.zip';
     $result = file_put_contents($fh, fopen($url, 'r'));
     $data = ['success' => $result];
@@ -179,4 +179,5 @@ function recurse_copy($src, $dst)
         }
     }
     closedir($dir);
+    return true;
 }
