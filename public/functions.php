@@ -78,7 +78,7 @@ function unzip()
     $zip = new ZipArchive();
     $res = $zip->open(__DIR__ . "/master.zip");
     if ($res === TRUE) {
-        $zip->extractTo(__DIR__ . '/extract_path/');
+        $zip->extractTo(__DIR__ . '/extract_path');
         $zip->close();
     }
     $data = ['success' => $res];
