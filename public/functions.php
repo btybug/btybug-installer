@@ -63,11 +63,12 @@ function requirements($args)
 
 function download()
 {
-    $fh = __DIR__ . "/master.zip";
-    $url = 'https://github.com/btybug/container/archive/master.zip';
-//    $url='http://dev.bootydev.co.uk/public/bootydev.zip';
-    $result = file_put_contents($fh, fopen($url, 'r'));
-    $data = ['success' => $result];
+//    $fh = __DIR__ . "/master.zip";
+//    $url = 'https://github.com/btybug/container/archive/master.zip';
+////    $url='http://dev.bootydev.co.uk/public/bootydev.zip';
+//    $result = file_put_contents($fh, fopen($url, 'r'));
+//    $data = ['success' => $result];
+    $data = ['success' => true];
     save_step('download', $data);
     echo json_encode($data);
     exit;
@@ -76,7 +77,7 @@ function download()
 function unzip()
 {
     $zip = new ZipArchive();
-    $res = $zip->open(__DIR__ . "/master.zip");
+    $res = $zip->open( "https://github.com/btybug/container/archive/master.zip");
     if ($res === TRUE) {
         $zip->extractTo(__DIR__ . '/extract_path');
         $zip->close();
