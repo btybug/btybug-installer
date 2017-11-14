@@ -52,7 +52,7 @@ function requirements($args)
         $continue = $continue * $requirements[$k];
 
     }
-    $requirements['PHP>=7'] = version_compare(phpversion(),'7.0.0','>=');
+    $requirements['PHP>=7'] = version_compare(phpversion(), '7.0.0', '>=');
     $requirements['Allow url fopen'] = ini_get('allow_url_fopen');
     $data = ['success' => true, 'data' => $requirements, 'continue' => $continue];
     save_step('requirements', $data);
@@ -62,13 +62,12 @@ function requirements($args)
 
 function download()
 {
+    ini_set('max_execution_time', '300');
+    ini_set('upload_max_filesize', '200');
+    ini_set('memory_limit', '320M');
     $fh = __DIR__ . "/master.zip";
-
-
     $url = 'https://github.com/btybug/container/archive/master.zip';
     // $url='http://dev.bootydev.co.uk/public/master.zip';
-    // $result = copy($url,$fh);
-
     $result = file_put_contents($fh, file_get_contents($url));
     $data = ['success' => $result];
     save_step('download', $data);
@@ -122,7 +121,7 @@ function run()
 //    mkdir($dest . '/storage', 0766, true);
 //    mkdir($dest . '/bootstrap/cache', 0766, true);
 //    shell_exec("cp -r $src $dest");
-    $res=recurse_copy($src, $dest);
+    $res = recurse_copy($src, $dest);
     $data = ['success' => $res];
     echo json_encode($data);
     exit;
